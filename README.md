@@ -7,4 +7,4 @@ Go api gateway
 - [Swagger Codegen](https://formulae.brew.sh/formula/swagger-codegen)
 
 ### Usage
-- Fill free to explore `Makefile` for usage
+- Feel free explore Makefile for usage
