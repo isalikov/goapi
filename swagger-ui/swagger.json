@@ -1,0 +1,57 @@
+{
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "Goapi endpoints",
+    "version": "1.0.0"
+  },
+  "basePath": "/",
+  "paths": {
+    "/home/example": {
+      "get": {
+        "description": "Example",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Home"
+        ],
+        "operationId": "Example",
+        "responses": {
+          "201": {
+            "description": "successful",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Aircraft"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Request"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "homeResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "x-go-name": "Message"
+        }
+      },
+      "x-go-package": "github.com/isalikov/goapi/routes/home"
+    }
+  }
+}
