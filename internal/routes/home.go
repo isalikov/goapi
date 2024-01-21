@@ -24,7 +24,6 @@ func Example(ctx context.Context) func(c *gin.Context) {
 	//   '200':
 	//     description: successful
 	//     schema:
-	//       type: object
 	//       "$ref": "#/definitions/ExampleResponse"
 	//   '500':
 	//     description: Server Error

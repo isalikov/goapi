@@ -23,10 +23,9 @@
         ],
         "operationId": "Example",
         "responses": {
-          "201": {
+          "200": {
             "description": "successful",
             "schema": {
-              "type": "object",
               "$ref": "#/definitions/ExampleResponse"
             }
           },
@@ -46,7 +45,7 @@
           "x-go-name": "Message"
         }
       },
-      "x-go-package": "github.com/isalikov/goapi/routes"
+      "x-go-package": "github.com/isalikov/goapi/internal/routes"
     }
   }
 }
