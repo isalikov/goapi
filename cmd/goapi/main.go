@@ -2,12 +2,12 @@
 //
 // Goapi endpoints
 //
-//     Schemes: http
-//     BasePath: /
-//     Version: 1.0.0
+//	Schemes: http
+//	BasePath: /
+//	Version: 1.0.0
 //
-//     Produces:
-//     - application/json
+//	Produces:
+//	- application/json
 //
 // swagger:meta
 package main
@@ -18,41 +18,32 @@ import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/isalikov/goapi/internal/env"
-	"github.com/isalikov/goapi/internal/services"
-	"github.com/isalikov/goapi/internal/utils"
-	"github.com/isalikov/goapi/routes/home"
+	home "github.com/isalikov/goapi/routes"
+	"github.com/sethvargo/go-envconfig"
 	"log"
 )
 
+var ctx = context.Background()
 
 func main() {
-	envConfig := &env.Config{}
+	config := &env.Config{}
 
-	err := env.Parse(envConfig)
-	if err != nil {
-		log.Fatalln(err, "Parsing environment")
+	if err := envconfig.Process(ctx, config); err != nil {
+		log.Fatalln(err, "Fatal Error: Parsing OS ENV")
 	}
 
-	logger := &utils.Logger{Debug: envConfig.Env != "release"}
-	logger.Init(envConfig.SentryDsn, envConfig.Release)
-
-	clients := services.Setup(envConfig, logger)
-
 	r := gin.Default()
-	ctx := context.Background()
-
 	r.Static("/docs", "swagger-ui")
 
 	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"*"},
-		AllowMethods:     []string{"PUT", "PATCH", "GET", "POST", "DELETE", "OPTIONS"},
-		AllowHeaders:     []string{"*"},
+		AllowOrigins: []string{"*"},
+		AllowMethods: []string{"PUT", "PATCH", "GET", "POST", "DELETE", "OPTIONS"},
+		AllowHeaders: []string{"*"},
 	}))
 
-	r.GET("/home/example", home.Example(ctx, clients, logger))
+	r.GET("/home/example", home.Example(ctx))
 
-	err = r.Run(fmt.Sprintf("0.0.0.0:%v", envConfig.Port))
-	if err != nil {
-		logger.Fatal(err, "Gin instance error")
+	if err := r.Run(fmt.Sprintf("0.0.0.0:%v", config.Port)); err != nil {
+		log.Fatalln(err, "Fatal Error: Running Server")
 	}
 }

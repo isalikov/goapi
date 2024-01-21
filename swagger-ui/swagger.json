@@ -26,14 +26,9 @@
           "201": {
             "description": "successful",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Aircraft"
-              }
+              "type": "object",
+              "$ref": "#/definitions/ExampleResponse"
             }
-          },
-          "400": {
-            "description": "Invalid Request"
           },
           "500": {
             "description": "Server Error"
@@ -43,7 +38,7 @@
     }
   },
   "definitions": {
-    "homeResponse": {
+    "ExampleResponse": {
       "type": "object",
       "properties": {
         "message": {
@@ -51,7 +46,7 @@
           "x-go-name": "Message"
         }
       },
-      "x-go-package": "github.com/isalikov/goapi/routes/home"
+      "x-go-package": "github.com/isalikov/goapi/routes"
     }
   }
 }

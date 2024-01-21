@@ -1,10 +1,7 @@
 # goapi
 
-Go api gateway
+Go API gateway
 
 ### Requirements
-- [Go 1.17](https://go.dev/dl)
-- [Swagger Codegen](https://formulae.brew.sh/formula/swagger-codegen)
-
-### Usage
-- Feel free explore Makefile for usage
+- [Go 1.21](https://go.dev/dl)
+- [goswagger](https://goswagger.io/install.html)
