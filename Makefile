@@ -4,7 +4,7 @@ NAME := goapi
 OUT_DIR := ./target
 
 MAIN_OUT := $(OUT_DIR)/$(NAME)
-MAIN_PKG := ./cmd/$(NAME)goapi
+MAIN_PKG := ./cmd/$(NAME)
 
 default: build
 
