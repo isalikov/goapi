@@ -20,7 +20,7 @@ run:
 
 .PHONY: vendor
 vendor:
-	$(V)go mod tidy -go=1.16 && go mod tidy -go=1.17
+	$(V)go mod tidy -go=1.21 && go mod tidy -go=1.21
 	$(V)go mod tidy
 	$(V)go mod vendor
 

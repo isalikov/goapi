@@ -1,9 +1,14 @@
-FROM golang:1.17
+FROM golang:1.21
 
-WORKDIR /app
+WORKDIR /usr/src
 COPY . .
-RUN make build
+RUN make vendor \
+    && make build \
+    && mkdir -p /usr/app \
+    && cp ./target/goapi /usr/app \
+    && cp -r ./swagger-ui /usr/app
 
-WORKDIR ./target/
+WORKDIR /usr/app
+RUN rm -rf /usr/src
 
 CMD ["./goapi"]
